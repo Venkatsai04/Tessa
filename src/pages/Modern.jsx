@@ -79,133 +79,102 @@ const Nav = () => {
   );
 };
 
-// --- NEW HERO SECTION ---
+// --- HERO SECTION (ORYX STYLE + BRAND GRADIENTS) ---
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-white pt-20">
-       {/* Blended Gradient Background */}
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20 bg-[#FDFDFD]">
+       
+       {/* --- BRANDING GRADIENTS BACKGROUND --- */}
        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              x: [0, 50, 0],
-              y: [0, 30, 0],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-10%] left-[20%] w-[50vw] h-[50vw] rounded-full blur-[120px] mix-blend-multiply opacity-50"
-            style={{ backgroundColor: COLORS.lightBlue }}
-          />
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.1, 1],
-              x: [0, -30, 0],
-              y: [0, 50, 0],
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-[-10%] right-[10%] w-[45vw] h-[45vw] rounded-full blur-[100px] mix-blend-multiply opacity-50"
-            style={{ backgroundColor: COLORS.orange }}
-          />
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.3, 1],
-              x: [0, 40, 0],
-              y: [0, -40, 0],
-            }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[30%] left-[-10%] w-[40vw] h-[40vw] rounded-full blur-[120px] mix-blend-multiply opacity-45"
-            style={{ backgroundColor: COLORS.deepBlue }}
-          />
+          {/* Main Blur Wrapper */}
+          <div className="absolute inset-0 opacity-40">
+              {/* Top Left - Light Blue */}
+              <motion.div 
+                animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-[10%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-[120px] mix-blend-multiply"
+                style={{ backgroundColor: COLORS.lightBlue }}
+              />
+              
+              {/* Bottom Right - Orange */}
+              <motion.div 
+                animate={{ scale: [1, 1.1, 1], x: [0, -30, 0], opacity: [0.5, 0.7, 0.5] }}
+                transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-[10%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-[100px] mix-blend-multiply"
+                style={{ backgroundColor: COLORS.orange }}
+              />
+              
+              {/* Center/Top Right - Deep Blue (Subtle depth) */}
+              <motion.div 
+                animate={{ scale: [1, 1.3, 1], y: [0, -40, 0], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] rounded-full blur-[130px] mix-blend-multiply"
+                style={{ backgroundColor: COLORS.deepBlue }}
+              />
+
+               {/* Center Glow to ensure text readability */}
+               <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+          </div>
        </div>
 
-       {/* Floating Doodles / Icons (Parallax feel) */}
-       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Top Left - Tech */}
+       {/* --- CONTENT --- */}
+       <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center">
+          
+          {/* 1. The "Pill" Tag */}
           <motion.div 
-            animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[20%] left-[10%] opacity-80"
-          >
-             <Code className="text-[#27AAE1] w-12 h-12 md:w-16 md:h-16 transform -rotate-12" />
-             <svg className="absolute -top-6 -left-6 w-12 h-12 text-[#2B3990] opacity-30" viewBox="0 0 100 100">
-               <path d="M10,50 Q50,10 90,50" fill="none" stroke="currentColor" strokeWidth="4" />
-             </svg>
-          </motion.div>
-
-          {/* Bottom Right - Security */}
-          <motion.div 
-            animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-[20%] right-[10%] opacity-80"
-          >
-             <Shield className="text-[#2B3990] w-14 h-14 md:w-20 md:h-20 transform rotate-6" />
-             <div className="absolute -bottom-4 -right-8 w-4 h-4 rounded-full bg-[#F15A29] opacity-50"></div>
-          </motion.div>
-
-          {/* Middle Right - Energy */}
-          <motion.div 
-            animate={{ x: [0, 15, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute top-[40%] right-[15%] opacity-60 hidden md:block"
-          >
-             <Zap className="text-[#F15A29] w-10 h-10" />
-          </motion.div>
-
-          {/* Middle Left - Abstract */}
-          <motion.div 
-             animate={{ scale: [1, 1.1, 1] }}
-             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-             className="absolute bottom-[30%] left-[15%] hidden md:block"
-          >
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-              <path d="M30 0L35 25L60 30L35 35L30 60L25 35L0 30L25 25L30 0Z" fill={COLORS.lightBlue} fillOpacity="0.2"/>
-            </svg>
-          </motion.div>
-       </div>
-
-       {/* Main Typography Content */}
-       <div className="relative z-10 text-center max-w-4xl px-6">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-6xl md:text-8xl font-black tracking-tight text-[#111] leading-[1.1] mb-8"
+            transition={{ duration: 0.6 }}
+            className="group mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 border border-white/80 shadow-sm backdrop-blur-md cursor-pointer hover:bg-white/90 transition-all"
+          >
+           
+            <span className="text-gray-400 group-hover:translate-x-1 transition-transform text-[10px]">
+              &gt;
+            </span>
+          </motion.div>
+
+          {/* 2. The Headline - Serif & Big */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            className="font-serif text-6xl md:text-8xl lg:text-[7rem] text-[#1a1a1a] leading-[1.05] mb-6 tracking-tight"
           >
             The ecosystem for <br/>
-            <span className="relative inline-block z-10">
-              secure innovation
-              {/* Scribble Underline */}
-              <svg 
-                className="absolute -bottom-2 md:-bottom-4 left-0 w-full h-[0.3em] pointer-events-none z-[-1]" 
-                viewBox="0 0 200 20" 
-                preserveAspectRatio="none"
-              >
-                <path d="M0,15 Q100,0 200,10" fill="none" stroke={COLORS.orange} strokeWidth="6" strokeLinecap="round" />
-              </svg>
+            <span className="text-[#2B3990]">
+               secure innovation.
             </span>
           </motion.h1>
 
+          {/* 3. The Subtext */}
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto font-medium mb-12 leading-relaxed"
+            className="text-lg md:text-xl text-gray-600 max-w-xl mx-auto font-medium mb-10 leading-relaxed tracking-wide"
           >
-            Streamline your digital infrastructure, secure your assets, and power your future with Tessa Group.
+            Context-aware assistance for designing, <br className="hidden md:block" />
+            building, and shipping secure software.
           </motion.p>
 
+          {/* 4. The Buttons */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col md:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-row items-center justify-center gap-4"
           >
-            
-            <button className="px-8 py-4 rounded-full bg-[#111] text-white font-bold text-lg hover:bg-[#F15A29] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center gap-2">
-               Get Started <ArrowRight size={20} />
+            {/* Primary Button: White, Shadow, Uppercase */}
+            <button className="px-8 py-4 rounded-lg bg-white text-[#111] font-bold text-xs md:text-sm uppercase tracking-widest shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex items-center gap-3 border border-gray-100">
+               Get Started <ArrowRight size={14} />
+            </button>
+
+            {/* Secondary Button: Transparent, Dark Text */}
+            <button className="px-8 py-4 rounded-lg bg-transparent hover:bg-black/5 text-[#111] font-bold text-xs md:text-sm uppercase tracking-widest transition-all border border-black/5 hover:border-black/10">
+               View Docs
             </button>
           </motion.div>
           
-         
        </div>
     </section>
   );
@@ -269,33 +238,33 @@ const EcosystemSection = () => {
               
               <div className="max-w-4xl w-full relative z-10 grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                   <div className="w-20 h-20 mb-8 rounded-full border border-white/30 flex items-center justify-center text-white shadow-xl bg-white/10 backdrop-blur-sm">
+                    <div className="w-20 h-20 mb-8 rounded-full border border-white/30 flex items-center justify-center text-white shadow-xl bg-white/10 backdrop-blur-sm">
                       <card.icon size={40} className={card.textColor} />
-                   </div>
-                   <h2 className={`text-6xl md:text-8xl font-black tracking-tighter mb-8 ${card.textColor}`}>
-                     {card.title}
-                   </h2>
-                   <p className={`text-2xl leading-relaxed mb-12 opacity-90 ${card.textColor}`}>
-                     {card.desc}
-                   </p>
-                   <button className={`flex items-center gap-4 text-sm font-bold uppercase tracking-widest border-b-2 pb-2 hover:opacity-70 transition-all ${card.textColor}`} style={{ borderColor: 'currentColor' }}>
-                     Explore Division <ArrowRight size={16} />
-                   </button>
+                    </div>
+                    <h2 className={`text-6xl md:text-8xl font-black tracking-tighter mb-8 ${card.textColor}`}>
+                      {card.title}
+                    </h2>
+                    <p className={`text-2xl leading-relaxed mb-12 opacity-90 ${card.textColor}`}>
+                      {card.desc}
+                    </p>
+                    <button className={`flex items-center gap-4 text-sm font-bold uppercase tracking-widest border-b-2 pb-2 hover:opacity-70 transition-all ${card.textColor}`} style={{ borderColor: 'currentColor' }}>
+                      Explore Division <ArrowRight size={16} />
+                    </button>
                 </div>
 
                 <div className={`h-[400px] w-full rounded-2xl border border-white/20 p-10 flex flex-col justify-between group hover:shadow-2xl transition-all duration-500 bg-white/10 backdrop-blur-md`}>
-                   <div className="flex justify-between items-start">
+                    <div className="flex justify-between items-start">
                       <div className="p-4 bg-white/20 rounded-full shadow-sm"><card.icon size={24} className={card.textColor} /></div>
                       <ArrowUpRight className={`${card.textColor} opacity-60 group-hover:opacity-100 transition-colors`} />
-                   </div>
-                   <div className="space-y-4">
+                    </div>
+                    <div className="space-y-4">
                       {card.stats.map((s, idx) => (
                         <div key={idx} className="flex items-center gap-4 border-b border-white/10 pb-4 last:border-0">
                            <div className="w-2 h-2 rounded-full bg-white"></div>
                            <span className={`text-lg font-medium ${card.textColor}`}>{s}</span>
                         </div>
                       ))}
-                   </div>
+                    </div>
                 </div>
               </div>
             </div>
@@ -323,23 +292,23 @@ const StickyIntro = () => {
              </div>
           </div>
           <div className="space-y-32 pt-20">
-             {[
-               { title: "Resilience", desc: "Built to withstand the shifts of global markets and digital threats.", color: COLORS.deepBlue },
-               { title: "Innovation", desc: "Constantly redefining digital infrastructure and sustainable power.", color: COLORS.lightBlue },
-               { title: "Authority", desc: "Trusted by government, banking, and regulated enterprise sectors.", color: COLORS.orange }
-             ].map((item, i) => (
-               <motion.div 
-                 key={i}
-                 initial={{ opacity: 0, y: 50 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ margin: "-100px" }}
-                 className="group"
-               >
-                 <div className="h-[1px] w-full bg-gray-200 mb-8 origin-left group-hover:scale-x-100 transition-transform"></div>
-                 <div className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: item.color }}>0{i + 1} — {item.title}</div>
-                 <p className="text-3xl md:text-4xl font-bold leading-tight">{item.desc}</p>
-               </motion.div>
-             ))}
+              {[
+                { title: "Resilience", desc: "Built to withstand the shifts of global markets and digital threats.", color: COLORS.deepBlue },
+                { title: "Innovation", desc: "Constantly redefining digital infrastructure and sustainable power.", color: COLORS.lightBlue },
+                { title: "Authority", desc: "Trusted by government, banking, and regulated enterprise sectors.", color: COLORS.orange }
+              ].map((item, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ margin: "-100px" }}
+                  className="group"
+                >
+                  <div className="h-[1px] w-full bg-gray-200 mb-8 origin-left group-hover:scale-x-100 transition-transform"></div>
+                  <div className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: item.color }}>0{i + 1} — {item.title}</div>
+                  <p className="text-3xl md:text-4xl font-bold leading-tight">{item.desc}</p>
+                </motion.div>
+              ))}
           </div>
        </div>
     </section>
@@ -480,8 +449,9 @@ const Modern = () => {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Playfair+Display:wght@400;500;600&display=swap');
         body { background-color: #fff; }
+        .font-serif { font-family: 'Playfair Display', serif; }
       `}</style>
     </div>
   );
